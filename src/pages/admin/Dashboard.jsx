@@ -5,7 +5,7 @@ function Dashboard(props) {
     <div className="flex min-h-screen bg-green-500">
       <div className="flex-1 p-8">
         <h1 className="text-3xl font-semibold text-gray-800">
-          Admin Dashboard
+          Admin Dashboard - TNL
         </h1>
         <div className="flex space-x-6 mt-8">
           <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
