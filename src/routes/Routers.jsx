@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Dashboard from "../pages/Admin/Dashboard";
+import Dashboard from "../pages/admin/Dashboard";
 import HomePage from "../pages/home/HomePage";
 import DisplayAlbum from "../components/display/DisplayAlbum";
 
