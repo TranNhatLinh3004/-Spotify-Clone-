@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+::-webkit-scrollbar {
+    display: none;
+}
+
+@layer components {
+    .volume-slider {
+        @apply w-full h-2 bg-gray-200 rounded-lg;
+    }
+    .volume-slider::-webkit-slider-thumb {
+        @apply h-4 w-4 rounded-full bg-green-500 cursor-pointer;
+    }
+    .volume-slider::-moz-range-thumb {
+        @apply h-4 w-4 rounded-full bg-green-500 cursor-pointer;
+    }
+    .volume-slider::-webkit-slider-runnable-track {
+        @apply h-2 bg-green-500 rounded-lg;
+    }
+}
