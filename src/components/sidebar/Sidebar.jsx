@@ -7,7 +7,7 @@ import plus_icon from "../../assets/frontend-assets/plus.png";
 
 function Sidebar() {
   return (
-    <div className="w-[25%] h-full p-2 flex-col gap-2 text-white hidden lg:flex bg-green-500">
+    <div className="w-[25%] h-[98.8%] p-2 flex-col gap-2 text-white hidden lg:flex bg-green-500">
       <div className="bg-[#121212] h-[15%] rounded flex justify-around flex-col ">
         <div className="flex items-center gap-3 pl-8 cursor-pointer">
           <img className="w-6" src={home_icon} alt="" />

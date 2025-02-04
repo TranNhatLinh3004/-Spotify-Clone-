@@ -6,7 +6,7 @@ import Player from "../../components/player/Player";
 function HomePage() {
   const { audioRef, track } = useContext(PlayerContext); // Dùng PlayerContext thay vì PlayerContextProvider
   return (
-    <div className="h-screen bg-black">
+    <div className="h-screen   bg-black">
       <div className="h-[90%] flex">
         <Sidebar />
         <Display />
