@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { API } from "../../main";
 function ListSongPage() {
   const [songs, setSongs] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedSong, setSelectedSong] = useState(null);
 
+  const navigate = useNavigate();
   const fetchSongs = async () => {
     try {
       const response = await axios.get("http://localhost:3001/api/song/list");
@@ -21,11 +24,14 @@ function ListSongPage() {
     fetchSongs();
   }, []);
 
-  const deleteSong = async (id) => {
-    console.log(id);
+  const deleteSong = async () => {
+    // console.log(id);
+    setShowModal(false);
 
     try {
-      const response = await axios.post(`${API}/api/song/remove`, { id });
+      const response = await axios.post(`${API}/api/song/remove`, {
+        id: selectedSong,
+      });
 
       if (response.data.success) {
         toast.success(response.data.message);
@@ -36,7 +42,10 @@ function ListSongPage() {
       toast.error("Không thể xóa bài hát. Vui lòng thử lại!");
     }
   };
-
+  const confirmDelete = (id) => {
+    setSelectedSong(id);
+    setShowModal(true);
+  };
   return (
     <div className="pt-6 w-full ">
       <div
@@ -78,12 +87,20 @@ function ListSongPage() {
                   <td className="p-3 text-gray-600">
                     {song.duration || "--:--"}
                   </td>
-                  <td className="p-3 text-center">
+                  <td className="p-3 flex gap-2 text-center items-center justify-center">
                     <button
-                      onClick={() => deleteSong(song._id)}
-                      className="text-red-500 hover:text-red-700 transition"
+                      onClick={() =>
+                        navigate(`/dashboard/update-song/${song._id}`)
+                      }
+                      className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-700 transition"
                     >
-                      X
+                      Update
+                    </button>
+                    <button
+                      onClick={() => confirmDelete(song._id)}
+                      className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-700 transition"
+                    >
+                      Delete
                     </button>
                   </td>
                 </tr>
@@ -98,6 +115,30 @@ function ListSongPage() {
           </tbody>
         </table>
       </div>
+      {/* Modal Xác Nhận Xóa */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-5 rounded-lg shadow-lg w-96">
+            <h2 className="text-lg font-semibold mb-4">
+              Bạn có chắc chắn muốn xóa bài hát này?
+            </h2>
+            <div className="flex justify-end space-x-2">
+              <button
+                onClick={() => setShowModal(false)}
+                className="px-4 py-2 bg-gray-300 text-black rounded hover:bg-gray-400 transition"
+              >
+                Hủy
+              </button>
+              <button
+                onClick={deleteSong}
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 transition"
+              >
+                Xóa
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

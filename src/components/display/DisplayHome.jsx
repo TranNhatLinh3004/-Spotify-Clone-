@@ -24,13 +24,13 @@ function DisplayHome() {
       {
         breakpoint: 1024, // Màn hình nhỏ hơn 1024px
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
         },
       },
       {
         breakpoint: 768, // Màn hình nhỏ hơn 768px
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
         },
       },
     ],
