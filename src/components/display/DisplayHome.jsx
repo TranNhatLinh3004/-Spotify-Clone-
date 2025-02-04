@@ -33,6 +33,12 @@ function DisplayHome() {
           slidesToShow: 2,
         },
       },
+      {
+        breakpoint: 360,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
     ],
   };
   let sliderRef = null;
