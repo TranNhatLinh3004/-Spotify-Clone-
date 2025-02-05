@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <>
-      <Routers />;
+      <Routers />
       <ToastContainer autoClose={2000} />
     </>
   );

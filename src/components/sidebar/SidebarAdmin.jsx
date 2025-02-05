@@ -53,7 +53,7 @@ function SidebarAdmin(props) {
           List Song
         </NavLink>
         <NavLink
-          href="/dashboard"
+          to="/dashboard/add-album"
           className="py-2.5 px-4 rounded transition duration-200 hover:bg-green-500 bg-white text-black flex items-center
           drop-shadow-[-4px_4px_#1db954]
 

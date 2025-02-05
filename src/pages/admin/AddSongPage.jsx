@@ -117,6 +117,7 @@ const AddSongPage = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="p-2.5 rounded text-gray-600 outline-green-600"
+          placeholder="Song name"
         />
       </div>
 
@@ -137,7 +138,7 @@ const AddSongPage = () => {
       
       */}
 
-      <button className="bg-green-600 text-white px-4 py-2 rounded w-[10%]">
+      <button className="bg-green-600 text-white px-4 py-2 rounded w-[10%] hover:bg-black">
         Add
       </button>
     </form>
