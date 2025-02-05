@@ -14,7 +14,7 @@ function DisplayHome() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 800,
     slidesToShow: 6, // Hiển thị 3 album cùng lúc
     slidesToScroll: 1,
     autoplay: true,
