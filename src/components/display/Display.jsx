@@ -1,13 +1,30 @@
-import React, { useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { Route, Routes, useLocation, useParams } from "react-router-dom";
 import DisplayHome from "./DisplayHome";
 import DisplayAlbum from "./DisplayAlbum";
+import { PlayerContext } from "../../context/PlayerContext";
 
 function Display() {
   const displayRef = useRef(null);
-  // const location = useLocation();
+  const location = useLocation();
   // console.log(location);
   // console.log(id);
+  const { albumData } = useContext(PlayerContext);
+  const isAlbum = location.pathname.includes("album");
+  const albumId = isAlbum ? location.pathname.split("/").pop() : "";
+
+  const bgColor =
+    isAlbum && Array.isArray(albumData)
+      ? albumData.find((album) => album._id === albumId)?.bgColor || "#121212"
+      : "#121212";
+
+  useEffect(() => {
+    if (isAlbum) {
+      displayRef.current.style.background = `linear-gradient(to bottom, ${bgColor} 0%, #121212 100%)`;
+    } else {
+      displayRef.current.style.background = "#121212";
+    }
+  });
 
   return (
     <div
@@ -16,7 +33,11 @@ function Display() {
     >
       <Routes>
         <Route path="/" element={<DisplayHome />} />
-        <Route path="/album/:id" element={<DisplayAlbum />} />
+        <Route
+          path="/album/:id"
+          element={<DisplayAlbum />}
+          album={albumData.find((album) => album.id === albumId)}
+        />
       </Routes>
     </div>
   );

@@ -8,13 +8,17 @@ function ListSongPage() {
   const [songs, setSongs] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedSong, setSelectedSong] = useState(null);
-
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const fetchSongs = async () => {
     try {
+      setLoading(true);
       const response = await axios.get("http://localhost:3001/api/song/list");
       setSongs(response.data.songs);
-      console.log(response.data);
+
+      if (response.status === 200) {
+        setLoading(false);
+      }
     } catch (error) {
       console.error("Lỗi khi lấy danh sách bài hát:", error);
     }
@@ -46,7 +50,11 @@ function ListSongPage() {
     setSelectedSong(id);
     setShowModal(true);
   };
-  return (
+  return loading ? (
+    <div className="gird place-items-center  mt-[20%]">
+      <div className="w-16 h-16 place-self-center animate-spin border-4 border-gray-700 rounded-full border-t-green-600 "></div>
+    </div>
+  ) : (
     <div className="pt-6 w-full ">
       <div
         className="mb-4

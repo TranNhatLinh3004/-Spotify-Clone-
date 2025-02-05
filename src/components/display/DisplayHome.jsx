@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Navbar from "../navbar/Navbar";
-import { albumsData } from "../../assets/frontend-assets/assets";
+// import { albumsData } from "../../assets/frontend-assets/assets";
 import { songsData } from "../../assets/frontend-assets/assets";
 import AlbumItem from "../albumItem/AlbumItem";
 import SongItem from "../songItem/SongItem";
@@ -9,7 +9,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BiChevronLeft } from "react-icons/bi";
 import { BiChevronRight } from "react-icons/bi";
+import { PlayerContext } from "../../context/PlayerContext";
 function DisplayHome() {
+  const { playWithId, songsData, albumData } = useContext(PlayerContext);
+
   const [isHovered, setIsHovered] = useState(false);
   const settings = {
     dots: true,
@@ -64,8 +67,8 @@ function DisplayHome() {
         )}
 
         <Slider ref={(slider) => (sliderRef = slider)} {...settings}>
-          {albumsData.map((album) => (
-            <AlbumItem key={album.id} {...album} />
+          {albumData.map((album) => (
+            <AlbumItem key={album._id} {...album} />
           ))}
         </Slider>
 
@@ -83,7 +86,7 @@ function DisplayHome() {
         <h1 className="my-5 font-bold text-2xl">Today's biggest hits</h1>
         <div className="flex overflow-auto">
           {songsData.map((song) => (
-            <SongItem key={song.id} {...song} />
+            <SongItem key={song._id} {...song} />
           ))}
         </div>
       </div>

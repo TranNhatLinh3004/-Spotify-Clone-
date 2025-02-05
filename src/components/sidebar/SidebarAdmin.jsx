@@ -52,21 +52,9 @@ function SidebarAdmin(props) {
           <img src={assets.add_song} alt="" className="w-6 mr-2" />
           List Song
         </NavLink>
-        <NavLink
-          to="/dashboard/add-album"
-          className="py-2.5 px-4 rounded transition duration-200 hover:bg-green-500 bg-white text-black flex items-center
-          drop-shadow-[-4px_4px_#1db954]
 
-          hover:drop-shadow-[-0px_0px_#1db954]
-
-          hover:text-white
-          "
-        >
-          <img src={assets.add_song} alt="" className="w-6 mr-2" />
-          Add Album
-        </NavLink>
         <NavLink
-          href="/dashboard"
+          to="/dashboard/list-album"
           className="py-2.5 px-4 rounded transition duration-200 hover:bg-green-500 bg-white text-black flex items-center
           drop-shadow-[-4px_4px_#1db954]
 

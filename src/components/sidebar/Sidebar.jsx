@@ -4,15 +4,16 @@ import search_icon from "../../assets/frontend-assets/search.png";
 import stack_icon from "../../assets/frontend-assets/stack.png";
 import arrow_icon from "../../assets/frontend-assets/arrow.png";
 import plus_icon from "../../assets/frontend-assets/plus.png";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
-    <div className="w-[25%] h-[98.8%] p-2 flex-col gap-2 text-white hidden lg:flex bg-green-500">
+    <div className="w-[25%] h-[98.8%] p-2 flex-col gap-2 text-white hidden lg:flex bg-transparent">
       <div className="bg-[#121212] h-[15%] rounded flex justify-around flex-col ">
         <div className="flex items-center gap-3 pl-8 cursor-pointer">
           <img className="w-6" src={home_icon} alt="" />
           <p className="font-bold">
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </p>
         </div>{" "}
         <div className="flex items-center gap-3 pl-8 cursor-pointer">

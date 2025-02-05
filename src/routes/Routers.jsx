@@ -7,6 +7,7 @@ import AddSongPage from "../pages/admin/AddSongPage";
 import ListSongPage from "../pages/admin/ListSongPage";
 import UpdateSongPage from "../pages/admin/UpdateSongPage";
 import AddAlbumPage from "../pages/admin/AddAlbumPage";
+import ListAlbumPage from "../pages/admin/ListAlbumPage";
 
 const Routers = () => {
   return (
@@ -21,6 +22,7 @@ const Routers = () => {
         <Route path="add-album" element={<AddAlbumPage />} />
 
         <Route path="list-song" element={<ListSongPage />} />
+        <Route path="list-album" element={<ListAlbumPage />} />
         <Route path="update-song/:id" element={<UpdateSongPage />} />
       </Route>
     </Routes>

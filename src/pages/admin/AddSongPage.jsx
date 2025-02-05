@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { assets } from "../../assets/admin-assets/assets";
 import axios from "axios";
 import { API } from "../../main";
@@ -43,6 +43,23 @@ const AddSongPage = () => {
       setLoading(false);
     }
   };
+  const [albumData, setAlbumData] = useState([]);
+  const loadAlbumData = async () => {
+    try {
+      const response = await axios.get(`${API}/api/album/list`);
+      if (response.status === 200) {
+        setAlbumData(response.data.albums);
+      } else {
+        toast.error("Không thể tải danh sách bài hát!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    loadAlbumData();
+  }, []);
 
   return loading ? (
     <div className="gird place-items-center  mt-[20%]">
@@ -102,8 +119,11 @@ const AddSongPage = () => {
           className="p-2.5 rounded text-gray-600 outline-green-600 w-[20%] "
         >
           <option value="none">None</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
+          {albumData.map((item, index) => (
+            <option key={index} value={item.name}>
+              {item.name}
+            </option>
+          ))}
         </select>
       </div>
       <div className="flex flex-col gap-2  w-[50%]">

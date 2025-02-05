@@ -13,7 +13,7 @@ import volumn_icon from "../../assets/frontend-assets/volume.png";
 import mini_icon from "../../assets/frontend-assets/mini-player.png";
 import zoom_icon from "../../assets/frontend-assets/zoom.png";
 import { PlayerContext } from "../../context/PlayerContext";
-import { songsData } from "../../assets/frontend-assets/assets";
+// import { songsData } from "../../assets/frontend-assets/assets";
 
 function Player() {
   // Player controls and status display goes here
@@ -28,6 +28,8 @@ function Player() {
     track,
     seekSong,
     audioRef,
+    songsData,
+    setSongsData,
   } = useContext(PlayerContext);
 
   // State to keep track of the volume level
@@ -43,13 +45,13 @@ function Player() {
     }
   };
 
-  return (
+  return track ? (
     <div className="h-[10%] bg-pink flex justify-between items-center text-white px-4">
       <div className="hidden lg:flex items-center gap-4">
-        <img className="w-12" src={songsData[0].image} alt="" />
+        <img className="w-12" src={track.image} alt="" />
         <div>
           <p>{track.name}</p>
-          <p>{track.desc.slice(0, 12)}</p>
+          <p>{track.album}</p>
         </div>
       </div>
       <div className="flex flex-col items-center gap-1 m-auto">
@@ -116,7 +118,7 @@ function Player() {
         <img className="w-4 cursor-pointer" src={zoom_icon} alt="" />
       </div>
     </div>
-  );
+  ) : null;
 }
 
 export default Player;

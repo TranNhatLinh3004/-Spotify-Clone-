@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 function Navbar() {
   const navigate = useNavigate();
   return (
-    <div className="z-20 bg-[#121212] fixed w-[89%] md:w-[72%]  top-0 pt-2 mt-2 pr-2 md:pr-0">
+    <div className="z-20 bg-transparent fixed w-[89%] md:w-[72%]  top-0 pt-2 mt-2 pr-2 md:pr-0">
       <div className="w-full flex justify-between items-center front-semibold ">
         <div className="flex items-center gap-2">
           <img

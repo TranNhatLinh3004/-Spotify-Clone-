@@ -4,31 +4,31 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import { IoPauseCircleSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
-function SongItem({ name, image, desc, id }) {
+function SongItem({ name, image, desc, _id }) {
   const navigate = useNavigate();
   const { playWithId, track, playStatus, togglePlayPause } =
     useContext(PlayerContext);
 
   const handleClick = () => {
-    if (track.id === id) {
+    if (track._id === _id) {
       // If clicking the same song, toggle play/pause
       togglePlayPause();
     } else {
       // If clicking a different song, play it
-      playWithId(id);
+      playWithId(_id);
     }
   };
 
   const handleNavigate = () => {
-    navigate(`/album/${id}`); // Navigate to detail page
+    navigate(`/song/details/${_id}`); // Navigate to detail page
   };
 
   // Check if this specific song is currently playing
-  const isThisSongPlaying = track.id === id && playStatus;
+  const isThisSongPlaying = track._id === _id && playStatus;
 
   return (
     <div
-      key={id}
+      key={_id}
       className="group min-w-[180px] p-2 rounded cursor-pointer hover:bg-[#ffffff26] relative"
       onClick={handleNavigate} // Clicking the whole item navigates to detail
     >
@@ -54,7 +54,7 @@ function SongItem({ name, image, desc, id }) {
         </div>
       </div>
       <p className="text-white font-bold">{name}</p>
-      <p className="text-white font-semibold">{desc}</p>
+      <p className="text-white font-semibold line-clamp-2">{desc}</p>
     </div>
   );
 }
