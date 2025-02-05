@@ -20,7 +20,7 @@ function SongItem({ name, image, desc, _id }) {
   };
 
   const handleNavigate = () => {
-    navigate(`/song/details/${_id}`); // Navigate to detail page
+    navigate(`/song/${_id}`); // Navigate to detail page
   };
 
   // Check if this specific song is currently playing

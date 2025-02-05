@@ -80,16 +80,6 @@ const PlayerContextProvider = (props) => {
       });
   }, [audioRef]);
 
-  // const play = () => {
-  //     audioRef.current.play();
-  //     setPlayStatus(true);
-  // }
-
-  // const pause = () => {
-  //     audioRef.current.pause();
-  //     setPlayStatus(false);
-  // }
-
   const playWithId = async (id) => {
     await songsData.map((item) => {
       if (item._id === id) {
@@ -119,30 +109,16 @@ const PlayerContextProvider = (props) => {
     });
   };
 
-  // const seekSong = async (e) => {
-  //   if (audioRef.current && seeBar.current) {
-  //     audioRef.current.currentTime =
-  //       (e.nativeEvent.offsetX / seeBar.current.offsetWidth) *
-  //       audioRef.current.duration;
-  //   }
-  // };
-  // const seekSong = async (e) => {
-  //   if (audioRef.current && seeBar.current) {
-  //     audioRef.current.currentTime =
-  //       (e.nativeEvent.offsetX / seeBar.current.offsetWidth) *
-  //       audioRef.current.duration;
-  //   }
-  // };
   const seekSong = (e) => {
-    if (audioRef.current && seeBar.current) {
-      // Lấy kích thước và vị trí của thanh tiến trình
-      const rect = seeBar.current.getBoundingClientRect();
+    if (audioRef.current && seeBg.current) {
+      // Lấy kích thước và vị trí của thanh tiến trình đầy đủ
+      const rect = seeBg.current.getBoundingClientRect();
 
-      // Tọa độ click so với thanh
+      // Xác định vị trí click so với thanh tiến trình
       const x = e.clientX - rect.left;
       const width = rect.width;
 
-      // Tính thời gian tương ứng
+      // Tính thời gian mới tương ứng
       const newTime = (x / width) * audioRef.current.duration;
 
       // Cập nhật thời gian phát

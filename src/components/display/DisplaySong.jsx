@@ -1,42 +1,41 @@
 import React, { useContext, useEffect, useState } from "react";
-import Navbar from "../navbar/Navbar";
 import { useParams } from "react-router-dom";
-// import { albumsData, songsData } from "../../assets/frontend-assets/assets";
+// import { songData, songsData } from "../../assets/frontend-assets/assets";
 import spotify_logo from "../../assets/frontend-assets/spotify_logo.png";
 import clock_icon from "../../assets/frontend-assets/clock_icon.png";
 import { PlayerContext } from "../../context/PlayerContext";
-
-function DisplayAlbum(props) {
+import Navbar from "../navbar/Navbar";
+function DisplaySong(props) {
   const { id } = useParams();
   // const albumData = albumsData[id];
 
-  const [albumsData, setAlbumsData] = useState("");
+  console.log(id);
+
+  const [songData, setSongData] = useState("");
 
   const { playWithId, songsData, albumData } = useContext(PlayerContext);
-
   useEffect(() => {
-    albumData.map((album) => {
-      if (album._id === id) {
-        setAlbumsData(album);
+    songsData.map((song) => {
+      if (song._id === id) {
+        setSongData(song);
       }
     });
   }, []);
 
   const filteredSongs = songsData.filter(
-    (song) => song.album === albumsData.name
+    (song) => song.album === songData.album
   );
-
-  return albumsData ? (
-    <>
+  return songData ? (
+    <div>
       <Navbar />
       <div className="mt-28 flex gap-8 flex-col md:flex-row md:items-end">
-        <img className="w-48 rounded" src={albumsData.image} alt="" />
+        <img className="w-48 rounded" src={songData.image} alt="" />
         <div className="flex flex-col">
           <p>Playlist</p>
           <h2 className="text-5xl font-bold mb-4 md:text-7xl">
-            {albumsData.name}
+            {songData.name}
           </h2>
-          <h4>{albumsData.desc}</h4>
+          <h4>{songData.desc}</h4>
           <p className="mt-1 ">
             <img className="w-5 h-5 inline-block" src={spotify_logo} alt="" />
             <b className="ml-2">Spotify</b>
@@ -46,6 +45,7 @@ function DisplayAlbum(props) {
           </p>
         </div>
       </div>
+
       <div className="w-[95%] flex justify-between  gird grid-cols-3 sm:grid-cols-4 mt-10 mb-4 pl-2 text-[#a7a7a7] ">
         <p className="flex-1 ">
           <b className="mr-4">#</b>Title
@@ -66,13 +66,13 @@ function DisplayAlbum(props) {
             <img className="w-10 mr-5 inline" src={song.image} alt="" />
             {song.name}
           </p>
-          <p className="text-[15px] flex-1">{albumsData.name}</p>
+          <p className="text-[15px] flex-1">{song.name}</p>
           <p className="hidden sm:block flex-1 ">5 days ago</p>
           <p className="text-[15px] text-center">{song.duration}</p>
         </div>
       ))}
-    </>
+    </div>
   ) : null;
 }
 
-export default DisplayAlbum;
+export default DisplaySong;

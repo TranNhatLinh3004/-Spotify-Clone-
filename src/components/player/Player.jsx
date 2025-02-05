@@ -13,10 +13,8 @@ import volumn_icon from "../../assets/frontend-assets/volume.png";
 import mini_icon from "../../assets/frontend-assets/mini-player.png";
 import zoom_icon from "../../assets/frontend-assets/zoom.png";
 import { PlayerContext } from "../../context/PlayerContext";
-// import { songsData } from "../../assets/frontend-assets/assets";
 
 function Player() {
-  // Player controls and status display goes here
   const {
     previous,
     next,
@@ -32,16 +30,13 @@ function Player() {
     setSongsData,
   } = useContext(PlayerContext);
 
-  // State to keep track of the volume level
-  const [volume, setVolume] = useState(1); // Default volume is 100%
-
-  // Reference to the audio element (assumes you have an audio element in your PlayerContext)
+  const [volume, setVolume] = useState(1);
 
   const handleVolumeChange = (e) => {
     const newVolume = e.target.value / 100;
     setVolume(newVolume);
     if (audioRef.current) {
-      audioRef.current.volume = newVolume; // Adjust the volume of the audio element
+      audioRef.current.volume = newVolume;
     }
   };
 
@@ -108,12 +103,11 @@ function Player() {
             type="range"
             min="0"
             max="100"
-            value={volume * 100} // Convert volume to percentage
+            value={volume * 100}
             onChange={handleVolumeChange}
             className="w-20 cursor-pointer"
           />
         </div>
-        {/* <div className="w-20 bg-slate-50 h-1 rounded"></div> */}
         <img className="w-4 cursor-pointer" src={mini_icon} alt="" />
         <img className="w-4 cursor-pointer" src={zoom_icon} alt="" />
       </div>

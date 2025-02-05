@@ -3,6 +3,7 @@ import { Route, Routes, useLocation, useParams } from "react-router-dom";
 import DisplayHome from "./DisplayHome";
 import DisplayAlbum from "./DisplayAlbum";
 import { PlayerContext } from "../../context/PlayerContext";
+import DisplaySong from "./DisplaySong";
 
 function Display() {
   const displayRef = useRef(null);
@@ -37,6 +38,11 @@ function Display() {
           path="/album/:id"
           element={<DisplayAlbum />}
           album={albumData.find((album) => album.id === albumId)}
+        />
+        <Route
+          path="/song/:id"
+          element={<DisplaySong />}
+          // album={albumData.find((album) => album.id === albumId)}
         />
       </Routes>
     </div>
