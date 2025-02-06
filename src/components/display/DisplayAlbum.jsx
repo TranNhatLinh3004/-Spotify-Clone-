@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import spotify_logo from "../../assets/frontend-assets/spotify_logo.png";
 import clock_icon from "../../assets/frontend-assets/clock_icon.png";
 import { PlayerContext } from "../../context/PlayerContext";
+import Slider from "react-slick";
+import AlbumItem from "../albumItem/AlbumItem";
 
 function DisplayAlbum(props) {
   const { id } = useParams();
@@ -21,10 +23,40 @@ function DisplayAlbum(props) {
       }
     });
   }, []);
-
+  const settings = {
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 6, // Hiển thị 3 album cùng lúc
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: false,
+    dots: false,
+    responsive: [
+      {
+        breakpoint: 1024, // Màn hình nhỏ hơn 1024px
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 768, // Màn hình nhỏ hơn 768px
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 360,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
   const filteredSongs = songsData.filter(
     (song) => song.album === albumsData.name
   );
+  let sliderRef = null;
 
   return albumsData ? (
     <>
@@ -50,7 +82,7 @@ function DisplayAlbum(props) {
         <p className="flex-1 ">
           <b className="mr-4">#</b>Title
         </p>
-        <p className="flex-1 ">Album</p>
+        <p className="flex-1 hidden sm:block">Album</p>
         <p className="hidden sm:block flex-1 ">Date Added</p>
         <img className="m-auto w-4  " src={clock_icon} alt="" />
       </div>
@@ -66,11 +98,21 @@ function DisplayAlbum(props) {
             <img className="w-10 mr-5 inline" src={song.image} alt="" />
             {song.name}
           </p>
-          <p className="text-[15px] flex-1">{albumsData.name}</p>
+          <p className="text-[15px] flex-1 hidden sm:block">
+            {albumsData.name}
+          </p>
           <p className="hidden sm:block flex-1 ">5 days ago</p>
           <p className="text-[15px] text-center">{song.duration}</p>
         </div>
       ))}
+
+      <h1 className="my-5 font-bold text-2xl">Recommended</h1>
+
+      <Slider ref={(slider) => (sliderRef = slider)} {...settings}>
+        {albumData.map((album) => (
+          <AlbumItem key={album._id} {...album} />
+        ))}
+      </Slider>
     </>
   ) : null;
 }

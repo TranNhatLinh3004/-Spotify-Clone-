@@ -5,6 +5,7 @@ import spotify_logo from "../../assets/frontend-assets/spotify_logo.png";
 import clock_icon from "../../assets/frontend-assets/clock_icon.png";
 import { PlayerContext } from "../../context/PlayerContext";
 import Navbar from "../navbar/Navbar";
+import SongItem from "../songItem/SongItem";
 function DisplaySong(props) {
   const { id } = useParams();
   // const albumData = albumsData[id];
@@ -13,7 +14,7 @@ function DisplaySong(props) {
 
   const [songData, setSongData] = useState("");
 
-  const { playWithId, songsData, } = useContext(PlayerContext);
+  const { playWithId, songsData } = useContext(PlayerContext);
   useEffect(() => {
     songsData.map((song) => {
       if (song._id === id) {
@@ -50,7 +51,7 @@ function DisplaySong(props) {
         <p className="flex-1 ">
           <b className="mr-4">#</b>Title
         </p>
-        <p className="flex-1 ">Album</p>
+        <p className="flex-1 hidden sm:block">Album</p>
         <p className="hidden sm:block flex-1 ">Date Added</p>
         <img className="m-auto w-4  " src={clock_icon} alt="" />
       </div>
@@ -66,11 +67,20 @@ function DisplaySong(props) {
             <img className="w-10 mr-5 inline" src={song.image} alt="" />
             {song.name}
           </p>
-          <p className="text-[15px] flex-1">{song.name}</p>
+          <p className="text-[15px] flex-1 hidden sm:block">{song.name}</p>
           <p className="hidden sm:block flex-1 ">5 days ago</p>
           <p className="text-[15px] text-center">{song.duration}</p>
         </div>
       ))}
+
+      <div className="mb-4">
+        <h1 className="my-5 font-bold text-2xl">You might also like</h1>
+        <div className="flex overflow-auto">
+          {songsData.map((song) => (
+            <SongItem key={song._id} {...song} />
+          ))}
+        </div>
+      </div>
     </div>
   ) : null;
 }
