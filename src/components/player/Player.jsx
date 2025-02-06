@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import shuffle_icon from "../../assets/frontend-assets/shuffle.png";
 import prev_icon from "../../assets/frontend-assets/prev.png";
 import play_icon from "../../assets/frontend-assets/play.png";
