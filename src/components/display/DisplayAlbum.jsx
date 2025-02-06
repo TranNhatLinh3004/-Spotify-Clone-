@@ -11,7 +11,6 @@ import Footer from "../footer/Footer";
 
 function DisplayAlbum(props) {
   const { id } = useParams();
-  // const albumData = albumsData[id];
 
   const [albumsData, setAlbumsData] = useState("");
 
@@ -23,7 +22,7 @@ function DisplayAlbum(props) {
         setAlbumsData(album);
       }
     });
-  }, []);
+  }, [id]);
   const settings = {
     infinite: true,
     speed: 1000,

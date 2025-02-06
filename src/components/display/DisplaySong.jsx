@@ -11,8 +11,6 @@ function DisplaySong(props) {
   const { id } = useParams();
   // const albumData = albumsData[id];
 
-  console.log(id);
-
   const [songData, setSongData] = useState("");
 
   const { playWithId, songsData } = useContext(PlayerContext);
@@ -22,7 +20,7 @@ function DisplaySong(props) {
         setSongData(song);
       }
     });
-  }, []);
+  }, [id]);
 
   const filteredSongs = songsData.filter(
     (song) => song.album === songData.album
