@@ -51,7 +51,7 @@ function Player() {
             <p>{track.album}</p>
           </div>
         </div>
-        <div className=" flex flex-col items-center gap-1 m-auto relative -right-16 sm:right-0">
+        <div className=" flex flex-col items-center gap-1 m-auto absolute right-6 sm:relative sm:right-0">
           <div className="flex gap-4">
             <img
               className="w-4 cursor-pointer block sm:hidden"
