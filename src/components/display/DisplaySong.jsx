@@ -13,7 +13,7 @@ function DisplaySong(props) {
 
   const [songData, setSongData] = useState("");
 
-  const { playWithId, songsData, albumData } = useContext(PlayerContext);
+  const { playWithId, songsData, } = useContext(PlayerContext);
   useEffect(() => {
     songsData.map((song) => {
       if (song._id === id) {

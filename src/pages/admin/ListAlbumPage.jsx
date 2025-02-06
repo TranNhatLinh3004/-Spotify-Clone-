@@ -13,7 +13,7 @@ function ListAlbumPage(props) {
     try {
       setLoading(true);
 
-      const response = await axios.get("http://localhost:3001/api/album/list");
+      const response = await axios.get(`${API}/api/album/list`);
       setAlbums(response.data.albums);
       console.log(response.data);
 

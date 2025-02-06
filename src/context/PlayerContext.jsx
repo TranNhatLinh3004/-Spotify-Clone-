@@ -36,6 +36,7 @@ const PlayerContextProvider = (props) => {
       setTrack(response.data.songs[0]);
     } catch (error) {
       console.log(error);
+      return [];
     }
   };
   const getAlbumData = async () => {
@@ -44,6 +45,7 @@ const PlayerContextProvider = (props) => {
       setAlbumData(response.data.albums);
     } catch (error) {
       console.log(error);
+      return [];
     }
   };
   useEffect(() => {

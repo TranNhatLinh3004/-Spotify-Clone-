@@ -13,7 +13,7 @@ function ListSongPage() {
   const fetchSongs = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:3001/api/song/list");
+      const response = await axios.get(`${API}/api/song/list`);
       setSongs(response.data.songs);
 
       if (response.status === 200) {
