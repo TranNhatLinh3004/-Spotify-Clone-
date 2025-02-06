@@ -8,6 +8,7 @@ import { PlayerContext } from "../../context/PlayerContext";
 import Slider from "react-slick";
 import AlbumItem from "../albumItem/AlbumItem";
 import Footer from "../footer/Footer";
+import SongItem from "../songItem/SongItem";
 
 function DisplayAlbum(props) {
   const { id } = useParams();
@@ -62,7 +63,11 @@ function DisplayAlbum(props) {
     <>
       <Navbar />
       <div className="mt-28 flex gap-8 flex-col md:flex-row md:items-end">
-        <img className="w-48 rounded" src={albumsData.image} alt="" />
+        <img
+          className="w-[100%] h-auto sm:w-48 rounded"
+          src={albumsData.image}
+          alt=""
+        />
         <div className="flex flex-col">
           <p>Playlist</p>
           <h2 className="text-5xl font-bold mb-4 md:text-7xl">
@@ -106,13 +111,17 @@ function DisplayAlbum(props) {
         </div>
       ))}
 
-      <h1 className="my-5 font-bold text-2xl">Recommended</h1>
+      {/* <h1 className="my-5 font-bold text-2xl">Recommended</h1> */}
 
-      <Slider ref={(slider) => (sliderRef = slider)} {...settings}>
-        {albumData.map((album) => (
-          <AlbumItem key={album._id} {...album} />
-        ))}
-      </Slider>
+      <div className="mb-4">
+        <h1 className="my-5 font-bold text-2xl">Recommended</h1>
+        <div className="flex overflow-auto">
+          {songsData.map((song) => (
+            <SongItem key={song._id} {...song} />
+          ))}
+        </div>
+      </div>
+
       <div className="h-20"></div>
       <Footer />
     </>
