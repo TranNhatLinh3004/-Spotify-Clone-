@@ -102,16 +102,35 @@ const PlayerContextProvider = (props) => {
   };
 
   const next = async () => {
-    songsData.map(async (item, index) => {
-      if (item._id === track._id && index < songsData.length - 1) {
-        await setTrack(songsData[index + 1]);
-        await audioRef.current.play();
-        setPlayStatus(true);
+    const currentIndex = songsData.findIndex((item) => item._id === track._id);
+
+    if (currentIndex < songsData.length - 1) {
+      const nextTrack = songsData[currentIndex + 1];
+
+      setTrack(nextTrack); // Cập nhật bài hát mới
+
+      if (audioRef.current) {
+        audioRef.current.pause(); // Dừng bài hiện tại
+        audioRef.current.load(); // Tải lại bài mới
+
+        audioRef.current.onloadeddata = () => {
+          audioRef.current.play(); // Phát nhạc sau khi tải xong
+          setPlayStatus(true);
+        };
       }
-    });
+    }
   };
 
-  const seekSong = (e) => {
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.onended = () => {
+        console.log("Bài hát đã kết thúc!");
+        next();
+      };
+    }
+  }, [track]);
+
+  function seekSong(e) {
     if (audioRef.current && seeBg.current) {
       // Lấy kích thước và vị trí của thanh tiến trình đầy đủ
       const rect = seeBg.current.getBoundingClientRect();
@@ -126,7 +145,7 @@ const PlayerContextProvider = (props) => {
       // Cập nhật thời gian phát
       audioRef.current.currentTime = newTime;
     }
-  };
+  }
 
   const contextValue = {
     seekSong,
