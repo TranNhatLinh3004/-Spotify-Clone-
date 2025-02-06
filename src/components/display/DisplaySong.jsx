@@ -29,7 +29,11 @@ function DisplaySong(props) {
     <div>
       <Navbar />
       <div className="mt-28 flex gap-8 flex-col md:flex-row md:items-end">
-        <img className="w-48 rounded" src={songData.image} alt="" />
+        <img
+          className="w-[100%] h-auto md:w-45 rounded"
+          src={songData.image}
+          alt=""
+        />
         <div className="flex flex-col">
           <p>Playlist</p>
           <h2 className="text-5xl font-bold mb-4 md:text-7xl">

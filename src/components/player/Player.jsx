@@ -12,6 +12,7 @@ import speaker_icon from "../../assets/frontend-assets/speaker.png";
 import volumn_icon from "../../assets/frontend-assets/volume.png";
 import mini_icon from "../../assets/frontend-assets/mini-player.png";
 import zoom_icon from "../../assets/frontend-assets/zoom.png";
+import plus_icon from "../../assets/frontend-assets/plus.png";
 import { PlayerContext } from "../../context/PlayerContext";
 
 function Player() {
@@ -41,59 +42,92 @@ function Player() {
   };
 
   return track ? (
-    <div className="h-[10%] bg-black flex justify-between items-center text-white px-4 fixed bottom-0 left-0 right-0">
-      <div className="hidden md:flex items-center gap-4">
-        <img className="w-12" src={track.image} alt="" />
-        <div>
-          <p>{track.name}</p>
-          <p>{track.album}</p>
+    <div className="h-[10%] bg-black flex flex-col justify-between items-center text-white px-2 sm:px-4 fixed bottom-0 left-0 right-0">
+      <div className=" flex items-center justify-between w-full h-full">
+        <div className="flex md:flex items-center gap-4">
+          <img className="w-12" src={track.image} alt="" />
+          <div>
+            <p>{track.name}</p>
+            <p>{track.album}</p>
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col items-center gap-1 m-auto">
-        <div className="flex gap-4">
-          <img className="w-4 cursor-pointer" src={shuffle_icon} alt="" />
-          <img
-            onClick={previous}
-            className="w-4 cursor-pointer"
-            src={prev_icon}
-            alt=""
-          />
-          <img
-            onClick={togglePlayPause}
-            className="w-4 cursor-pointer"
-            src={playStatus ? pause_icon : play_icon}
-            alt={playStatus ? "Pause" : "Play"}
-          />
-          <img
-            onClick={next}
-            className="w-4 cursor-pointer"
-            src={next_icon}
-            alt=""
-          />
-          <img className="w-4 cursor-pointer" src={loop_icon} alt="" />
-        </div>
-        <div className="flex items-center gap-2  w-auto md:w-[40vw]">
-          <p>
-            {time?.currentTime.minutes}:
-            {String(time?.currentTime?.seconds || 0).padStart(2, "0")}
-          </p>
-          <div
-            onClick={(e) => seekSong(e)}
-            ref={seeBg}
-            className="w-[60vw] max-w-[500px] bg-gray-300 rounded-full cursor-pointer"
-          >
-            <hr
-              ref={seeBar}
-              className="bg-green-500 border-none h-1 rounded-full"
+        <div className=" flex flex-col items-center gap-1 m-auto relative -right-16 sm:right-0">
+          <div className="flex gap-4">
+            <img
+              className="w-4 cursor-pointer block sm:hidden"
+              src={speaker_icon}
+              alt=""
+            />
+            <img
+              onClick={previous}
+              className="w-4 cursor-pointer block sm:hidden"
+              src={plus_icon}
+              alt=""
+            />
+
+            <img
+              className="w-4 cursor-pointer hidden sm:block"
+              src={shuffle_icon}
+              alt=""
+            />
+            <img
+              onClick={previous}
+              className="w-4 cursor-pointer hidden sm:block"
+              src={prev_icon}
+              alt=""
+            />
+            <img
+              onClick={togglePlayPause}
+              className="w-4 cursor-pointer"
+              src={playStatus ? pause_icon : play_icon}
+              alt={playStatus ? "Pause" : "Play"}
+            />
+            <img
+              onClick={next}
+              className="w-4 cursor-pointer hidden sm:block"
+              src={next_icon}
+              alt=""
+            />
+            <img
+              className="w-4 cursor-pointer hidden sm:block"
+              src={loop_icon}
+              alt=""
             />
           </div>
-          <p>
-            {time?.totalTime.minutes || 0}:{time?.totalTime.seconds || "00"}
-          </p>
+          <div className="flex items-center gap-2  w-auto md:w-[40vw]">
+            <p className="hidden sm:block">
+              {time?.currentTime.minutes}:
+              {String(time?.currentTime?.seconds || 0).padStart(2, "0")}
+            </p>
+            <div
+              onClick={(e) => seekSong(e)}
+              ref={seeBg}
+              className="w-[60vw] max-w-[500px] bg-gray-300 rounded-full cursor-pointer hidden sm:block"
+            >
+              <hr
+                ref={seeBar}
+                className="bg-green-500 border-none h-1 rounded-full"
+              />
+            </div>
+            <p className="hidden sm:block">
+              {time?.totalTime.minutes || 0}:{time?.totalTime.seconds || "00"}
+            </p>
+          </div>
         </div>
       </div>
+
+      <div
+        onClick={(e) => seekSong(e)}
+        ref={seeBg}
+        className=" max-w-[500px] bg-gray-300 rounded-full cursor-pointer block sm:hidden w-[100%]"
+      >
+        <hr
+          ref={seeBar}
+          className="bg-green-500 border-none h-1 rounded-full"
+        />
+      </div>
       <div className="hidden md:flex items-center gap-2 opacity-75">
-        <img className="w-4 cursor-pointer" src={plays_icon} alt="" />
+        <img className="w-4 cursor-pointer " src={plays_icon} alt="" />
         <img className="w-4 cursor-pointer" src={mic_icon} alt="" />
         <img className="w-4 cursor-pointer" src={queue_icon} alt="" />
         <img className="w-4 cursor-pointer" src={speaker_icon} alt="" />
