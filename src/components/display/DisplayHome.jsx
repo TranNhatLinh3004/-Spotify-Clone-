@@ -15,7 +15,6 @@ function DisplayHome() {
 
   const [isHovered, setIsHovered] = useState(false);
   const settings = {
-    dots: true,
     infinite: true,
     speed: 1000,
     slidesToShow: 6, // Hiển thị 3 album cùng lúc
@@ -23,6 +22,7 @@ function DisplayHome() {
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
+    dots: false,
     responsive: [
       {
         breakpoint: 1024, // Màn hình nhỏ hơn 1024px
