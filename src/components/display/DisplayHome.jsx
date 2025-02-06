@@ -17,11 +17,11 @@ function DisplayHome() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 800,
+    speed: 1000,
     slidesToShow: 6, // Hiển thị 3 album cùng lúc
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
     arrows: false,
     responsive: [
       {
