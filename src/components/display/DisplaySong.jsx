@@ -30,7 +30,7 @@ function DisplaySong(props) {
       <Navbar />
       <div className="mt-28 flex gap-8 flex-col md:flex-row md:items-end">
         <img
-          className="w-[100%] h-auto md:w-45 rounded"
+          className="w-[100%]  h-auto md:w-44 rounded"
           src={songData.image}
           alt=""
         />

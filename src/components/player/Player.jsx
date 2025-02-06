@@ -42,7 +42,7 @@ function Player() {
   };
 
   return track ? (
-    <div className="h-[10%] bg-black flex flex-col justify-between items-center text-white px-2 sm:px-4 fixed bottom-0 left-0 right-0">
+    <div className="h-[10%] bg-black flex flex-col sm:flex-row justify-between items-center text-white px-2 sm:px-4 fixed bottom-0 left-0 right-0">
       <div className=" flex items-center justify-between w-full h-full">
         <div className="flex md:flex items-center gap-4">
           <img className="w-12" src={track.image} alt="" />
@@ -94,7 +94,7 @@ function Player() {
               alt=""
             />
           </div>
-          <div className="flex items-center gap-2  w-auto md:w-[40vw]">
+          <div className="flex items-center gap-2 m-auto justify-center w-auto md:w-[40vw]">
             <p className="hidden sm:block">
               {time?.currentTime.minutes}:
               {String(time?.currentTime?.seconds || 0).padStart(2, "0")}
@@ -126,12 +126,12 @@ function Player() {
           className="bg-green-500 border-none h-1 rounded-full"
         />
       </div>
-      <div className="hidden md:flex items-center gap-2 opacity-75">
+      <div className="hidden md:flex items-center gap-2 opacity-75 relative -left-10">
         <img className="w-4 cursor-pointer " src={plays_icon} alt="" />
         <img className="w-4 cursor-pointer" src={mic_icon} alt="" />
         <img className="w-4 cursor-pointer" src={queue_icon} alt="" />
         <img className="w-4 cursor-pointer" src={speaker_icon} alt="" />
-        <div className="flex items-center gap-2 ">
+        <div className="flex items-center gap-2 mr-4">
           <img className="w-4 cursor-pointer" src={volumn_icon} alt="" />
           <input
             type="range"
