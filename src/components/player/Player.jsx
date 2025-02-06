@@ -114,7 +114,7 @@ function Player() {
           </div>
         </div>
       </div>
-
+      {/* 
       <div
         onClick={(e) => seekSong(e)}
         ref={seeBg}
@@ -124,7 +124,7 @@ function Player() {
           ref={seeBar}
           className="bg-green-500 border-none h-1 rounded-full"
         />
-      </div>
+      </div> */}
       <div className="hidden md:flex items-center gap-2 opacity-75 relative -left-10">
         <img className="w-4 cursor-pointer " src={plays_icon} alt="" />
         <img className="w-4 cursor-pointer" src={mic_icon} alt="" />
