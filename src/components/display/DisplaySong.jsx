@@ -6,6 +6,7 @@ import clock_icon from "../../assets/frontend-assets/clock_icon.png";
 import { PlayerContext } from "../../context/PlayerContext";
 import Navbar from "../navbar/Navbar";
 import SongItem from "../songItem/SongItem";
+import Footer from "../footer/Footer";
 function DisplaySong(props) {
   const { id } = useParams();
   // const albumData = albumsData[id];
@@ -81,6 +82,9 @@ function DisplaySong(props) {
           ))}
         </div>
       </div>
+
+      <div className="h-20"></div>
+      <Footer />
     </div>
   ) : null;
 }

@@ -7,6 +7,7 @@ import clock_icon from "../../assets/frontend-assets/clock_icon.png";
 import { PlayerContext } from "../../context/PlayerContext";
 import Slider from "react-slick";
 import AlbumItem from "../albumItem/AlbumItem";
+import Footer from "../footer/Footer";
 
 function DisplayAlbum(props) {
   const { id } = useParams();
@@ -113,6 +114,8 @@ function DisplayAlbum(props) {
           <AlbumItem key={album._id} {...album} />
         ))}
       </Slider>
+      <div className="h-20"></div>
+      <Footer />
     </>
   ) : null;
 }
