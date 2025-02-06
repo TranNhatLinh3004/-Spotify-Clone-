@@ -41,7 +41,7 @@ function Player() {
   };
 
   return track ? (
-    <div className="h-[10%] bg-pink flex justify-between items-center text-white px-4">
+    <div className="h-[10%]  flex justify-between items-center text-white px-4 fixed bottom-0 left-0 right-0">
       <div className="hidden md:flex items-center gap-4">
         <img className="w-12" src={track.image} alt="" />
         <div>
