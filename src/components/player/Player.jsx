@@ -59,7 +59,6 @@ function Player() {
               alt=""
             />
             <img
-              onClick={previous}
               className="w-4 cursor-pointer block sm:hidden"
               src={plus_icon}
               alt=""
